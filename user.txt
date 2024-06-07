@@ -1,0 +1,19 @@
+const mysql = require('mysql');
+const con =require('./conf/connect');
+
+app.post('/add-user', (req, res) => {
+    const nom=req.body.nom;
+    console.log(nom);
+    const role=req.body.role;
+    const num_cart=req.body.num_cart; 
+    const date_creation=new Date();
+    con.query('insert into user values(?,?,?,?,?)',[nom,,date_creation,role,num_cart],(err,result)=>{
+        if(err)
+            {
+               console.log(err) 
+            }else{
+                res.send("new user :) , wlc")
+            }
+    })
+    
+})
